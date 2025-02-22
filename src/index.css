@@ -57,6 +57,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+.tarjeta.favorito {
+  border: 2px solid gold;
+  background-color: #fffbe6;
+}
+
 button:hover {
   border-color: #646cff;
 }

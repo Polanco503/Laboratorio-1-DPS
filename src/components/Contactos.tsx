@@ -11,11 +11,13 @@ interface ContactosObj {
     direccion: string; //Direccion de residencia
     empresa: string; //Nombre y direccion de la empresa del usuario
     empresaNum: string; //Numero de la empresa
+    favorito: boolean;
     suprimir: (id: number) => void; //Funcion que se encragara de eliminar el Id del contacto, eliminandolo definitivamente
     editar: ( id: number, nombre: string, segundoNom: string, apellido: string, segundoApell: string, telefono: string, Altelefono: string, direccion: string, empresa: string, empresaNum: string ) => void; //Funcion para editar contactos
-}
+    estadoFav: (id:number) => void;
+  }
 
-const Contactos: React.FC<ContactosObj> = ({id, nombre, segundoNom, apellido, segundoApell, telefono, altelefono, direccion, empresa, empresaNum, suprimir, editar}) => {
+const Contactos: React.FC<ContactosObj> = ({id, nombre, segundoNom, apellido, segundoApell, telefono, altelefono, direccion, empresa, empresaNum, favorito, suprimir, editar, estadoFav}) => {
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         editar(
@@ -44,6 +46,10 @@ const Contactos: React.FC<ContactosObj> = ({id, nombre, segundoNom, apellido, se
       <input type="text" name="empresa" value={empresa} onChange={handleChange} onFocus={(e) => e.target.value = ""} placeholder="Empresa" />
       <input type="text" name="empresaNum" value={empresaNum} onChange={handleChange} onFocus={(e) => e.target.value = ""} placeholder="Nnúmero de empresa" />
 
+            <button onClick={() => estadoFav(id)}>
+                {favorito ? "★ Favorito" : "Agregar a Favoritos"}
+            </button>
+          
           <button onClick={() => suprimir(id)}>Eliminar</button>
         </div>
     );
